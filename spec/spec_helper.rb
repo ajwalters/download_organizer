@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'spec'
 require File.expand_path(File.dirname(__FILE__)) + "/../download_organizer"
 
@@ -40,6 +41,7 @@ Spec::Runner.configure do |config|
   # == Notes
   # 
   # For more information take a look at Spec::Example::Configuration and Spec::Runner
+  
 end
 
 ##
@@ -89,8 +91,43 @@ module DownloadOrganizerSpecHelper
   def test_music_path
     test_download_path + "/Music"
   end
+  
+  def test_video_path
+    test_download_path + "/Video"
+  end
+  
+  def test_torrent_path
+    test_download_path + "/Torrents"
+  end
+  
+  def test_disk_image_path
+    test_download_path + "/Disk Images and Installers"
+  end
+  
+  def test_documents_path
+    test_download_path + "/Documents"
+  end
+  
+  def test_images_path
+    test_download_path + "/Images"
+  end
+  
+  def test_archives_path
+    test_download_path + "/Archives"
+  end
+  
+  def test_misc_path
+    test_download_path + "/Misc"
+  end
 end
 
+# Deletes a file, checking if it exists first
+def delete_if_exists(path)
+  FileUtils.remove_entry_secure(path) if File.exists?(path)
+end
 
+def create_dir_unless_exists(path)
+  Dir.mkdir(path) unless File.exists?(path)
+end
 
 
