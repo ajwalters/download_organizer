@@ -442,6 +442,29 @@ describe DownloadOrganizer do
       @do.sort_files
       File.exists?("#{test_images_path}/#{@temp_folder_name}").should be_true
     end
+    
+    it "should skip the folders created by the download organizer (Music, Videos, etc)" do
+      # Create each folder type and insert a .doc file
+      folder_types = DownloadOrganizer::RECOGNIZED_TYPES + [:misc]
+      folder_types.each do |type|
+        folder_path = "#{test_download_path}/#{DownloadOrganizer.module_eval("DEFAULT_#{type.to_s.upcase}_FOLDER")}"
+        Dir.mkdir(folder_path)
+        File.new("#{folder_path}/test.doc", 'w')
+      end
+      @do.sort_files
+      # Check to make sure each folder and the file inside were not moved
+      folder_types.each do |type|
+        folder_path = "#{test_download_path}/#{DownloadOrganizer.module_eval("DEFAULT_#{type.to_s.upcase}_FOLDER")}"
+        File.exists?(folder_path).should be_true
+        File.exists?("#{folder_path}/test.doc").should be_true
+      end
+    end
+    
+    it "should ignore folders with no files in them" do
+      File.exists?(@temp_folder_path).should be_true
+      @do.sort_files
+      File.exists?(@temp_folder_path).should be_true      
+    end
   
   end
   

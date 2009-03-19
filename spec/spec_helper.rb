@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'spec'
-require File.expand_path(File.dirname(__FILE__)) + "/../download_organizer"
+# require File.expand_path(File.dirname(__FILE__)) + "/../download_organizer"
+Dir.glob(File.expand_path(File.dirname(__FILE__)) + "/../lib/*.rb").each{|f| require f}
 
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
