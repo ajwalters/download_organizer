@@ -432,9 +432,7 @@ describe DownloadOrganizer do
       @do.sort_files
       File.exists?("#{test_music_path}/#{@temp_folder_name}").should be_true
     end
-  
-    it "should put folders with no m3u, but a majority of mp3s in the music folder"
-  
+    
     it "should put folders with primarily image files in the pictures folder" do
       @majority_num.times{ |i| File.new("#{@temp_folder_path}/picture_#{i}.jpeg", "w") }
       File.new("#{@temp_folder_path}/explanation.pdf", "w")
@@ -466,6 +464,33 @@ describe DownloadOrganizer do
       File.exists?(@temp_folder_path).should be_true      
     end
   
+  end
+  
+  describe "progress bar" do
+    before(:each) do
+      @number_of_files = 6
+      # Create six files
+      @number_of_files.times{|i| File.new("#{test_download_path}/temp_file_#{i}.pdf", "w")}
+      @do = DownloadOrganizer.new(test_download_path)
+    end
+    
+    after(:each) do
+      # Created document files...
+      delete_if_exists(test_documents_path)
+    end
+  
+    it "should have a progress of 0 initially" do
+      @do.progress.should eql(0.0)
+    end
+    
+    it "should have a progress of 1.0 after sorting files" do
+      @do.sort_files
+      @do.progress.should eql(1.0)
+    end
+    
+    it "should be able to assign a progress bar" do
+      @do.progress_bar = "temp_object"
+    end
   end
   
 end
