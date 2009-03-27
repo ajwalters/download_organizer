@@ -6,7 +6,7 @@ Shoes.app :width => 480, :height => 175, :title => "The Insanity Has Gone On Lon
     background rgb(255,255,255)
     border lightslategray
     stack do
-      caption "Downloads Organizer", :margin_left => 20, :margin_top => 20, :variant => 'smallcaps', :size => 'large',
+      caption "Download Organizer", :margin_left => 20, :margin_top => 20, :variant => 'smallcaps', :size => 'large',
               :stroke => firebrick
     end
     flow :margin_left => 25, :height => 55 do
