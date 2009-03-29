@@ -1,0 +1,36 @@
+= DownloadOrganizer
+
+Ruby app using Shoes (http://shoooes.net/) to sort download folder by file type for quicker management.
+
+== Prerequisites 
+
+To run from the source, you will need to have Shoes installed.  For installation instructions, please see http://help.shoooes.net/Installing.html
+
+Leopard Users:
+To run shoes from the command line (ie- shoes main.rb) you must add /Applications/Shoes.app/Contents/MacOS to your path following installation
+
+== Usage
+
+Either launch shoes and open main.rb, or run "shoes main.rb" from the command line.
+
+Select the location of the folder you wish to sort.
+
+Click "Sort!" 
+
+Following a successful message, your files and folders will be sorted into folders based on the file type.  
+
+Now you can easily manage your downloads based off their type.
+
+== Sorting Examples
+
+=== Files
+temp.mp3 ==> Music folder
+temp.avi ==> Video folder
+temp.zysl ==> Misc folder
+
+=== Folders
+A folders destination is determined by the most prominent type of all contained files
+
+music_folder/ (folder has majority of music files) ==> Music folder
+movie_folder/ (folder has majority of movie files) ==> Movie folder
+etc
